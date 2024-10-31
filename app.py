@@ -25,6 +25,7 @@ def hello_world():
     - /chat?message=your_message
     - /history
     - /learn?topic=python_concept
+    - /python?question=what_to_learn
     '''
 
 @app.route('/chat')
@@ -91,6 +92,14 @@ def provide_random_example():
     ]
     return random.choice(examples)
 
+
+@app.route('/python')
+def python():
+    question = request.args.get("question","").lower()
+    if question in PYTHON_CONCEPTS:
+        return f'Enjoy your python learning! Stay safe, stay happy, stay healthy'
+    else:
+        return f'Go back to the python_concepts'
 
 
 #http://localhost:5000/chat?message=tell+me+about+lists
